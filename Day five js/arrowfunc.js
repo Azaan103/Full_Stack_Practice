@@ -1,4 +1,4 @@
-let a=4 , b=4
+let a=4 , b=5
 
 const multiply = (a,b) => a*b;
 
@@ -9,3 +9,5 @@ console.log(mul)
 const square = (a) => Math.pow(a,2);
 const sq = square(a)
 console.log(sq)
+
+    

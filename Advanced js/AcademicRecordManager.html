@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grade Manager</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#f4f6f9;
+            padding:40px;
+        }
+
+        .container{
+            max-width:1000px;
+            margin:auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 5px 15px rgba(0,0,0,.1);
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:30px;
+            color:#333;
+        }
+
+        .inputs{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:15px;
+            margin-bottom:20px;
+        }
+
+        input{
+            padding:12px;
+            border:1px solid #ccc;
+            border-radius:6px;
+            font-size:16px;
+        }
+
+        .buttons{
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+            margin-bottom:25px;
+        }
+
+        button{
+            padding:12px 18px;
+            border:none;
+            border-radius:6px;
+            cursor:pointer;
+            color:white;
+            font-size:15px;
+            transition:.3s;
+        }
+
+        #addBtn{
+            background:#2ecc71;
+        }
+
+        #findBtn{
+            background:#3498db;
+        }
+
+        #passedBtn{
+            background:#f39c12;
+        }
+
+        #statsBtn{
+            background:#9b59b6;
+        }
+
+        button:hover{
+            opacity:.9;
+            transform:translateY(-2px);
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:20px;
+        }
+
+        th,td{
+            border:1px solid #ddd;
+            padding:12px;
+            text-align:center;
+        }
+
+        th{
+            background:#2c3e50;
+            color:white;
+        }
+
+        tr:nth-child(even){
+            background:#f9f9f9;
+        }
+
+        .stats{
+            margin-top:30px;
+            padding:20px;
+            background:#ecf0f1;
+            border-radius:8px;
+        }
+
+        .stats h2{
+            margin-bottom:15px;
+        }
+
+        .stats p{
+            margin:10px 0;
+            font-size:17px;
+        }
+
+        @media(max-width:700px){
+
+            .inputs{
+                grid-template-columns:1fr;
+            }
+
+            .buttons{
+                flex-direction:column;
+            }
+
+            button{
+                width:100%;
+            }
+
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Student Grade Manager</h1>
+
+    <div class="inputs">
+
+        <input
+            type="text"
+            id="studentName"
+            placeholder="Enter Student Name">
+
+        <input
+            type="number"
+            id="studentMarks"
+            placeholder="Enter Student Marks">
+
+    </div>
+
+    <div class="buttons">
+
+        <button id="addBtn">Add Student</button>
+
+        <button id="findBtn">Find Student</button>
+
+        <button id="passedBtn">Show Passed Students</button>
+
+        <button id="statsBtn">Show Statistics</button>
+
+    </div>
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Marks</th>
+                <th>Grade</th>
+                <th>Status</th>
+            </tr>
+
+        </thead>
+
+        <tbody id="studentTable">
+
+            <!-- JavaScript will insert rows here -->
+
+        </tbody>
+
+    </table>
+
+    <section class="stats">
+
+        <h2>Class Statistics</h2>
+
+        <p>
+            <strong>Average Marks:</strong>
+            <span id="averageMarks">--</span>
+        </p>
+
+        <p>
+            <strong>Anyone Failed?</strong>
+            <span id="anyFailed">--</span>
+        </p>
+
+        <p>
+            <strong>Everyone Passed?</strong>
+            <span id="everyonePassed">--</span>
+        </p>
+
+    </section>
+
+</div>
+
+<script src="AcademicRecordManager.js"></script>
+
+</body>
+</html>
