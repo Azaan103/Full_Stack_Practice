@@ -19,7 +19,7 @@
         }
 
         .container{
-            max-width:1000px;
+            max-width:900px;
             margin:auto;
             background:white;
             padding:30px;
@@ -76,10 +76,6 @@
             background:#f39c12;
         }
 
-        #statsBtn{
-            background:#9b59b6;
-        }
-
         button:hover{
             opacity:.9;
             transform:translateY(-2px);
@@ -88,10 +84,10 @@
         table{
             width:100%;
             border-collapse:collapse;
-            margin-top:20px;
         }
 
-        th,td{
+        th,
+        td{
             border:1px solid #ddd;
             padding:12px;
             text-align:center;
@@ -104,22 +100,6 @@
 
         tr:nth-child(even){
             background:#f9f9f9;
-        }
-
-        .stats{
-            margin-top:30px;
-            padding:20px;
-            background:#ecf0f1;
-            border-radius:8px;
-        }
-
-        .stats h2{
-            margin-bottom:15px;
-        }
-
-        .stats p{
-            margin:10px 0;
-            font-size:17px;
         }
 
         @media(max-width:700px){
@@ -146,7 +126,6 @@
     <h1>Student Grade Manager</h1>
 
     <div class="inputs">
-
         <input
             type="text"
             id="studentName"
@@ -156,25 +135,17 @@
             type="number"
             id="studentMarks"
             placeholder="Enter Student Marks">
-
     </div>
 
     <div class="buttons">
-
         <button id="addBtn">Add Student</button>
-
         <button id="findBtn">Find Student</button>
-
         <button id="passedBtn">Show Passed Students</button>
-
-        <button id="statsBtn">Show Statistics</button>
-
     </div>
 
     <table>
 
         <thead>
-
             <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -182,37 +153,13 @@
                 <th>Grade</th>
                 <th>Status</th>
             </tr>
-
         </thead>
 
         <tbody id="studentTable">
-
-            <!-- JavaScript will insert rows here -->
-
+            <!-- JavaScript inserts rows here -->
         </tbody>
 
     </table>
-
-    <section class="stats">
-
-        <h2>Class Statistics</h2>
-
-        <p>
-            <strong>Average Marks:</strong>
-            <span id="averageMarks">--</span>
-        </p>
-
-        <p>
-            <strong>Anyone Failed?</strong>
-            <span id="anyFailed">--</span>
-        </p>
-
-        <p>
-            <strong>Everyone Passed?</strong>
-            <span id="everyonePassed">--</span>
-        </p>
-
-    </section>
 
 </div>
 
