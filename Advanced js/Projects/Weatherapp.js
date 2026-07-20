@@ -12,7 +12,6 @@ srchbtn.addEventListener('click',function(){
     getweather()
 })
 
-try {
 async function getweather()
 {
     let city_name = cityname.value.trim()
@@ -28,8 +27,4 @@ async function getweather()
    
 
 }
-}
 
-catch{
-    alert("Error")
-}
