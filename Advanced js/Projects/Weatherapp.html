@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Poppins, sans-serif;
+        }
+
+        body {
+
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb);
+
+        }
+
+        .container {
+
+            width: 380px;
+            background: rgba(255, 255, 255, .12);
+            backdrop-filter: blur(20px);
+
+            border: 1px solid rgba(255, 255, 255, .2);
+
+            border-radius: 25px;
+            padding: 30px;
+
+            color: white;
+
+        }
+
+        h1 {
+
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 30px;
+
+        }
+
+        .search {
+
+            display: flex;
+            gap: 10px;
+
+        }
+
+        .search input {
+
+            flex: 1;
+            padding: 14px;
+
+            border: none;
+            outline: none;
+
+            border-radius: 12px;
+
+            font-size: 16px;
+
+        }
+
+        .search button {
+
+            border: none;
+            background: #38bdf8;
+
+            color: white;
+
+            padding: 0 18px;
+
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            font-size: 22px;
+
+            transition: .3s;
+
+        }
+
+        .search button:hover {
+
+            background: #0ea5e9;
+
+        }
+
+        .weather {
+
+            margin-top: 35px;
+            text-align: center;
+
+        }
+
+        .weather .icon {
+
+            font-size: 70px;
+
+        }
+
+        .weather h2 {
+
+            margin-top: 10px;
+            font-size: 48px;
+
+        }
+
+        .weather h3 {
+
+            margin-top: 5px;
+            font-weight: 500;
+
+        }
+
+        .city {
+
+            margin-top: 8px;
+            color: #dbeafe;
+
+        }
+
+        .details {
+
+            margin-top: 30px;
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 15px;
+
+        }
+
+        .card {
+
+            background: rgba(255, 255, 255, .1);
+
+            border-radius: 15px;
+
+            padding: 18px;
+
+            text-align: center;
+
+        }
+
+        .card h4 {
+
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+
+        }
+
+        .card p {
+
+            font-size: 22px;
+            font-weight: 600;
+
+        }
+
+        .loading {
+
+            margin-top: 20px;
+            text-align: center;
+
+            color: #fde68a;
+
+            display: none;
+
+        }
+
+        .error {
+
+            margin-top: 20px;
+
+            color: #fecaca;
+
+            text-align: center;
+
+            display: none;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🌤 Weather App</h1>
+
+        <div class="search">
+
+            <input type="text" placeholder="Enter city..." id="cityInput">
+
+            <button id="searchBtn">
+                🔍
+            </button>
+
+        </div>
+
+        <p class="loading">
+            Loading weather...
+        </p>
+
+        <p class="error">
+            City not found!
+        </p>
+
+        <div class="weather">
+
+            <div class="icon">
+                ☀️
+            </div>
+
+            <h2 id="temp">
+                -
+            </h2>
+
+            
+
+            <p class="city" id="cityName">
+                Enter Name
+            </p>
+
+            <div class="details">
+
+                <div class="card">
+                    <h4>💧 Humidity</h4>
+                    <p id="humidity">-</p>
+                </div>
+
+                <div class="card">
+                    <h4>🌬 Wind</h4>
+                    <p id="wind">-</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+<script src="Weatherapp.js"></script>
+</html>
