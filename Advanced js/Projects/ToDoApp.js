@@ -48,7 +48,11 @@ function displayTasks() {
 
             <div class="left">
 
-                <div class="checkbox"></div>
+        <input
+        type="checkbox"
+        class="checkbox"
+        data-id="${task.id}"
+        ${task.completed ? "checked" : ""}>
 
                 <div>
 
@@ -135,6 +139,8 @@ taskContainer.addEventListener("click", (e) => {
     }
 })
 
+taskContainer.addEventListener("click", (e) => {
+    if (e.target.classList.contains("checkbox")) {
 
 
 // =========================
