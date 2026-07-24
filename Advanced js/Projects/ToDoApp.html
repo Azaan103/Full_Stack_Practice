@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TaskFlow</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -16,12 +18,40 @@ box-sizing:border-box;
 font-family:Inter,sans-serif;
 }
 
+:root{
+--bg:#0a0a08;
+--card:#141310;
+--card-alt:#1a1914;
+--line:#2a2820;
+--line-soft:#201f19;
+--ink:#f7f4ea;
+--muted:#9a9689;
+--muted-dim:#6b6858;
+
+--yellow:#f5c518;
+--yellow-light:#ffe066;
+--yellow-dark:#c9a012;
+--yellow-soft:rgba(245,197,24,0.14);
+
+--red:#ff6969;
+--orange:#ffbf57;
+--green:#5fe58f;
+--green-soft:rgba(95,229,143,0.14);
+}
+
+html,body{
+height:100%;
+}
+
 body{
-background:#09090b;
-color:white;
+background:
+radial-gradient(circle at 10% 0%, rgba(245,197,24,0.09) 0%, transparent 40%),
+radial-gradient(circle at 95% 15%, rgba(245,197,24,0.06) 0%, transparent 40%),
+var(--bg);
+color:var(--ink);
 display:flex;
 justify-content:center;
-padding:50px 20px;
+padding:60px 20px 80px;
 }
 
 .container{
@@ -30,25 +60,34 @@ max-width:900px;
 }
 
 header{
-margin-bottom:35px;
+margin-bottom:40px;
+text-align:center;
 }
 
 header h1{
-font-size:38px;
-font-weight:700;
-letter-spacing:-1px;
+font-family:'Sora',sans-serif;
+font-size:44px;
+font-weight:800;
+letter-spacing:-1.2px;
+background:linear-gradient(120deg, var(--yellow-light), var(--yellow-dark));
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
 }
 
 header p{
-margin-top:8px;
-color:#8b8b95;
+margin-top:10px;
+color:var(--muted);
+font-size:16px;
 }
 
 .card{
-background:#141418;
-border:1px solid #24242a;
-padding:24px;
-border-radius:18px;
+background:var(--card);
+border:1px solid var(--line);
+padding:26px;
+border-radius:20px;
+margin-bottom:32px;
+box-shadow:0 30px 60px -35px rgba(0,0,0,0.8);
 }
 
 .form{
@@ -59,87 +98,132 @@ gap:15px;
 
 input,
 select{
-background:#1d1d22;
-border:1px solid #2c2c33;
-color:white;
+background:var(--card-alt);
+border:1.5px solid var(--line);
+color:var(--ink);
 padding:14px;
 border-radius:12px;
 outline:none;
 font-size:15px;
-transition:.3s;
+transition:.25s ease;
+}
+
+input::placeholder{
+color:var(--muted-dim);
 }
 
 input:focus,
 select:focus{
-border-color:#5b7cff;
+border-color:var(--yellow);
+box-shadow:0 0 0 4px var(--yellow-soft);
+}
+
+select{
+cursor:pointer;
+appearance:none;
+-webkit-appearance:none;
+background-image:linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+background-position:calc(100% - 16px) center, calc(100% - 11px) center;
+background-size:5px 5px, 5px 5px;
+background-repeat:no-repeat;
+padding-right:34px;
+}
+
+input[type="date"]{
+color-scheme:dark;
 }
 
 button{
-background:#4f6cff;
+background:linear-gradient(135deg, var(--yellow-light), var(--yellow-dark));
 border:none;
 padding:14px 26px;
 border-radius:12px;
-color:white;
-font-weight:600;
+color:#1a1608;
+font-family:'Sora',sans-serif;
+font-weight:700;
 cursor:pointer;
-transition:.3s;
+transition:.22s ease;
+box-shadow:0 14px 30px -14px rgba(245,197,24,0.5);
 }
 
 button:hover{
-background:#6481ff;
+transform:translateY(-2px);
+filter:brightness(1.06);
 }
+
+button:active{
+transform:translateY(0);
+}
+
+/* ===========================
+Toolbar
+=========================== */
 
 .toolbar{
 display:flex;
-justify-content:space-between;
-margin:30px 0;
-gap:15px;
-flex-wrap:wrap;
-}
-
-.search{
-flex:1;
+justify-content:center;
+margin-bottom:32px;
 }
 
 .filters{
 display:flex;
-gap:10px;
+gap:8px;
+padding:6px;
+background:var(--card);
+border:1px solid var(--line);
+border-radius:16px;
 }
 
 .filter{
-background:#18181d;
-border:1px solid #2c2c33;
-padding:10px 18px;
-border-radius:10px;
-color:#bbb;
+background:transparent;
+border:none;
+padding:10px 20px;
+border-radius:11px;
+color:var(--muted);
+font-size:14px;
+font-weight:600;
 cursor:pointer;
+transition:.22s ease;
+box-shadow:none;
+}
+
+.filter:hover{
+color:var(--ink);
+transform:none;
+filter:none;
 }
 
 .filter.active{
-background:#4f6cff;
-border:none;
-color:white;
+background:linear-gradient(135deg, var(--yellow-light), var(--yellow-dark));
+color:#1a1608;
 }
+
+/* ===========================
+Tasks
+=========================== */
 
 .tasks{
 display:flex;
 flex-direction:column;
-gap:18px;
+gap:16px;
 }
 
 .task{
-background:#141418;
-border:1px solid #24242a;
-padding:20px;
+background:var(--card);
+border:1px solid var(--line);
+padding:22px;
 border-radius:18px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-transition:.3s;
+transition:.25s ease;
+box-shadow:0 20px 40px -30px rgba(0,0,0,0.7);
 }
 
 .task:hover{
-border-color:#4f6cff;
+border-color:var(--yellow);
+transform:translateY(-2px);
+box-shadow:0 20px 40px -25px rgba(245,197,24,0.18);
 }
 
 .left{
@@ -151,42 +235,72 @@ align-items:flex-start;
 .checkbox{
 width:22px;
 height:22px;
-border-radius:6px;
-border:2px solid #4f6cff;
-margin-top:2px;
 cursor:pointer;
+margin-top:3px;
+accent-color:var(--yellow);
 }
 
 .task h3{
+font-family:'Sora',sans-serif;
 font-size:18px;
-margin-bottom:6px;
+margin-bottom:9px;
+font-weight:600;
+letter-spacing:-0.01em;
 }
 
 .meta{
 display:flex;
-gap:12px;
+gap:10px;
 flex-wrap:wrap;
 }
 
 .tag{
-padding:6px 12px;
-background:#1e1e24;
+padding:6px 13px;
+background:var(--card-alt);
+border:1px solid var(--line-soft);
 border-radius:50px;
-font-size:13px;
-color:#aaa;
+font-size:12.5px;
+font-weight:600;
+color:var(--muted);
 }
 
 .high{
-color:#ff6969;
+color:var(--red);
 }
 
 .medium{
-color:#ffbf57;
+color:var(--orange);
 }
 
 .low{
-color:#5fe58f;
+color:var(--green);
 }
+
+/* ===========================
+Completed Task
+=========================== */
+
+.completed{
+opacity:.6;
+transition:.3s;
+}
+
+.completed h3{
+text-decoration:line-through;
+color:var(--muted-dim);
+}
+
+.completed .checkbox{
+accent-color:var(--green);
+}
+
+.completed .tag{
+opacity:.7;
+}
+
+/* ===========================
+Buttons
+=========================== */
 
 .actions{
 display:flex;
@@ -194,63 +308,105 @@ gap:10px;
 }
 
 .secondary{
-background:#1f1f25;
+background:var(--card-alt);
+border:1px solid var(--line);
+color:var(--ink);
+box-shadow:none;
+font-weight:600;
 }
 
 .secondary:hover{
-background:#2a2a31;
+background:#232219;
+border-color:var(--yellow);
 }
 
 .delete{
-background:#2d1d21;
+background:rgba(255,105,105,0.12);
+border:1px solid rgba(255,105,105,0.25);
+color:#ff9a9a;
+box-shadow:none;
+font-weight:600;
 }
 
 .delete:hover{
-background:#47262d;
+background:rgba(255,105,105,0.2);
+border-color:var(--red);
+filter:none;
+transform:translateY(-2px);
 }
 
+/* ===========================
+Empty State
+=========================== */
+
 .empty{
-margin-top:50px;
-text-align:center;
-padding:50px;
-background:#141418;
-border-radius:18px;
-border:1px dashed #2f2f35;
 display:none;
+margin-top:30px;
+padding:60px 40px;
+background:var(--card);
+border:1.5px dashed var(--line);
+border-radius:20px;
+text-align:center;
 }
 
 .empty h2{
-font-weight:600;
+font-family:'Sora',sans-serif;
 margin-bottom:10px;
+font-weight:700;
 }
 
 .empty p{
-color:#7c7c84;
+color:var(--muted);
 }
 
+/* ===========================
+Footer
+=========================== */
+
 footer{
-margin-top:35px;
+margin-top:36px;
 display:flex;
 justify-content:space-between;
+align-items:center;
+gap:15px;
 flex-wrap:wrap;
-color:#8a8a92;
+background:var(--card);
+border:1px solid var(--line);
+padding:20px 24px;
+border-radius:18px;
+box-shadow:0 30px 60px -35px rgba(0,0,0,0.8);
+}
+
+footer div{
+color:var(--muted);
 font-size:15px;
 }
 
+footer strong{
+color:var(--yellow-light);
+font-family:'Sora',sans-serif;
+margin-left:5px;
+font-size:16px;
+}
+
+/* ===========================
+Responsive
+=========================== */
+
 @media(max-width:760px){
+
+header h1{
+font-size:34px;
+}
 
 .form{
 grid-template-columns:1fr;
 }
 
-.toolbar{
-flex-direction:column;
-}
-
 .task{
 flex-direction:column;
 align-items:flex-start;
-gap:18px;
+gap:20px;
 }
 
 .actions{
@@ -261,43 +417,29 @@ width:100%;
 flex:1;
 }
 
+footer{
+flex-direction:column;
+align-items:flex-start;
 }
-.completed{
-
-opacity:.6;
-transition:.3s;
-
-}
-
-.completed h3{
-
-text-decoration:line-through;
-color:#888;
-
-}
-
-.completed .checkbox{
-
-accent-color:#22c55e;
-
-}
-
-.completed .tag{
-
-opacity:.7;
 
 }
 
 </style>
+
 </head>
 <body>
 
 <div class="container">
 
 <header>
+
 <h1>TaskFlow</h1>
+
 <p>Stay organized. Finish what matters.</p>
+
 </header>
+
+<!-- Add Task -->
 
 <div class="card">
 
@@ -305,13 +447,17 @@ opacity:.7;
 
 <input
 type="text"
-placeholder="What needs to be done?"
-id="taskInput">
+id="taskInput"
+placeholder="What needs to be done?">
 
 <select id="priority">
+
 <option>Low</option>
+
 <option selected>Medium</option>
+
 <option>High</option>
+
 </select>
 
 <input
@@ -326,43 +472,55 @@ Add Task
 
 </div>
 
-<div class="toolbar">
+<!-- Filters -->
 
-<input
-class="search"
-type="text"
-placeholder="Search task..."
-id="search">
+<div class="toolbar">
 
 <div class="filters">
 
-<div class="filter active" id="allFilter">
+<button
+class="filter active"
+id="allFilter">
 All
-</div>
+</button>
 
-<div class="filter" id="activeFilter">
+<button
+class="filter"
+id="activeFilter">
 Active
-</div>
+</button>
 
-<div class="filter" id="completedFilter">
+<button
+class="filter"
+id="completedFilter">
 Completed
-</div>
+</button>
 
 </div>
 
 </div>
 
-<!-- Tasks will be generated by JavaScript -->
-<div class="tasks" id="taskContainer"></div>
+<!-- Tasks generated by JavaScript -->
 
-<!-- Empty state -->
-<div class="empty" id="emptyState">
+<div
+class="tasks"
+id="taskContainer">
+
+</div>
+
+<!-- Empty State -->
+
+<div
+class="empty"
+id="emptyState">
 
 <h2>No Tasks Yet</h2>
 
 <p>Add your first task to get started.</p>
 
 </div>
+
+<!-- Stats -->
 
 <footer>
 

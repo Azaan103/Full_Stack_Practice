@@ -13,6 +13,7 @@ const taskContainer = document.querySelector("#taskContainer");
 const totalTasks = document.querySelector("#totalTasks");
 const completedTasks = document.querySelector("#completedTasks");
 const pendingTasks = document.querySelector("#pendingTasks");
+const editTask = document.querySelector(".secondary")
 
 function updateStats(){
 
@@ -91,8 +92,7 @@ function displayTasks(taskList = tasks) {
 
     <div class="actions">
 
-        <button class="secondary">Edit</button>
-
+        <button class="secondary" data-id=" ${task.id} ">Edit</button>
         <button class="delete" data-id="${task.id}">
             Delete
         </button>
@@ -118,20 +118,46 @@ function addTask() {
 
     if (title === "") return;
 
-    const task = {
+    // =========================
+    // EDIT EXISTING TASK
+    // =========================
 
-        id: Date.now(),
-        title,
-        priority,
-        date,
-        completed: false
+    if (editingId !== null) {
 
-    };
+        const task = tasks.find(task => task.id === editingId);
 
-    tasks.push(task);
+        task.title = title;
+        task.priority = priority;
+        task.date = date;
+
+        editingId = null;
+
+        addBtn.textContent = "Add Task";
+
+    }
+
+    // =========================
+    // ADD NEW TASK
+    // =========================
+
+    else {
+
+        const task = {
+
+            id: Date.now(),
+            title,
+            priority,
+            date,
+            completed: false
+
+        };
+
+        tasks.push(task);
+
+    }
 
     displayTasks();
-    updateStats()
+    updateStats();
 
     taskInput.value = "";
     priorityInput.value = "Medium";
@@ -207,6 +233,33 @@ allTasks.addEventListener("click",()=>{
         displayTasks()
         updateStats();
 })
+
+// =========================
+//  Edit Tasks
+// =========================
+let editingId = null;
+
+taskContainer.addEventListener("click",(e)=>{
+
+    if(e.target.classList.contains("secondary")){
+
+
+        const id = Number(e.target.dataset.id);
+        const task = tasks.find(task => task.id === id);
+
+        taskInput.value = task.title
+        priorityInput.value = task.priority
+        dateInput.value = task.date
+
+        // Remember which task is being edited
+        editingId = id;
+
+        // Change button text
+        addBtn.textContent = "Save Changes";
+    }
+      
+});
+
 
 // =========================
 // Initial Render
