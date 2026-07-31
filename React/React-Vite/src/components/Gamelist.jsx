@@ -1,20 +1,36 @@
 import GameCard from "./GameCard";
+const games = [
+  {
+    title: "Cyberpunk 2077",
+    genre: "RPG",
+    status: "Playing"
+  },
+  {
+    title: "GTA V",
+    genre: "Action",
+    status: "Completed"
+  },
+  {
+    title: "Minecraft",
+    genre: "Sandbox",
+    status: "Wishlist"
+  }
+];
 
-function GameList()
-{
-    return(
-        <section className="games">
+function Gamelist(){
+return (
+    <section className="games">
 
-    <GameCard />
+        {games.map((game) => {
+            return (
+               <GameCard {...game} />
+            );
+        })}
 
-    <GameCard />
+    </section>
+);
 
-    <GameCard />
-
-</section>
-    )
-    
 }
 
-export default GameList  
+export default Gamelist  
              

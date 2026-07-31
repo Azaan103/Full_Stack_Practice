@@ -1,12 +1,12 @@
-function GameCard() {
+function GameCard(props) {
   return (
     <div className="game-card">
-      <h3>Cyberpunk 2077</h3>
+      <h3>{props.title}</h3>
 
-      <p><strong>Genre:</strong> RPG</p>
+      <p><strong>Genre:</strong> {props.genre}</p>
 
       <span className="status playing">
-        Playing
+        {props.status}
       </span>
 
       <div className="buttons">
