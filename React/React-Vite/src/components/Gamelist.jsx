@@ -24,7 +24,9 @@ function Gamelist(){
 
         {games.map((game) => {
             return (
-               <GameCard {...game} />
+               <GameCard
+               key =  { game.title } 
+               { ...game} />
             );
         })}
 
