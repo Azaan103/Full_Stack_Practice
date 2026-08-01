@@ -1,5 +1,8 @@
 import GameCard from "./GameCard";
-const games = [
+import { useState } from "react";
+
+function Gamelist(){
+  const [games,setgames] = useState ([
   {
     title: "Cyberpunk 2077",
     genre: "RPG",
@@ -15,10 +18,8 @@ const games = [
     genre: "Sandbox",
     status: "Wishlist"
   }
-];
-
-function Gamelist(){
-return (
+]);
+  return (
     <section className="games">
 
         {games.map((game) => {
