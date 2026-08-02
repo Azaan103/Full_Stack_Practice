@@ -7,7 +7,7 @@ function App() {
   function Gamelist(){
   const [games,setgames] = useState ([
   {
-    title: "Cyberpunk 2077",
+    title: "Cyberpunk 2075",
     genre: "RPG",
     status: "Playing"
   },
