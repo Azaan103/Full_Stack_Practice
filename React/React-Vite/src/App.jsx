@@ -1,11 +1,11 @@
 import Header from "./components/Header"
 import AddGameForm from "./components/AddGameForm"
 import GameList from "./components/Gamelist"
-
+import { useState } from "react";
 
 function App() {
-  function Gamelist(){
-  const [games,setgames] = useState ([
+
+  const [games,setGames] = useState ([
   {
     title: "Cyberpunk 2075",
     genre: "RPG",
@@ -25,8 +25,11 @@ function App() {
   return (
      <>
       <Header />
-      <AddGameForm />
-      <GameList />
+      <AddGameForm 
+      games = {games} 
+      setGames = {setGames}/>
+
+      <GameList   games = {games} />
     </>
   )
 }

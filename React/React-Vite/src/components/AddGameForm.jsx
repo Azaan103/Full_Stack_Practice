@@ -1,5 +1,5 @@
 import { useState } from "react";
-function AddGameForm()
+function AddGameForm({ games, setGames })
 {       
 
     const [title, setTitle] = useState("");   
@@ -9,6 +9,17 @@ function AddGameForm()
     console.log(title);
     console.log(genre);
     console.log(status)
+
+    function handleAddGames()
+    {
+        const newGame ={
+            title,
+            genre,
+            status
+        }
+        console.log(newGame)
+        setGames([...games,newGame])
+    }
     return(
         <section className="form-card">
             <h2>Add New Game</h2>
@@ -43,7 +54,10 @@ function AddGameForm()
                     <option>Wishlist</option>
                 </select>
 
-                <button type="button" className="add-btn">
+                <button type="button" 
+                className="add-btn"
+                onClick = {handleAddGames}
+                >
                     Add Game
                 </button>
             </form>

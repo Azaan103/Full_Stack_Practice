@@ -1,24 +1,8 @@
 import GameCard from "./GameCard";
 import { useState } from "react";
 
-function Gamelist(){
-  const [games,setgames] = useState ([
-  {
-    title: "Cyberpunk 2077",
-    genre: "RPG",
-    status: "Playing"
-  },
-  {
-    title: "GTA V",
-    genre: "Action",
-    status: "Completed"
-  },
-  {
-    title: "Minecraft",
-    genre: "Sandbox",
-    status: "Wishlist"
-  }
-]);
+
+function Gamelist({games}) {
   return (
     <section className="games">
 
@@ -32,7 +16,6 @@ function Gamelist(){
 
     </section>
 );
-
 }
 
 export default Gamelist  
