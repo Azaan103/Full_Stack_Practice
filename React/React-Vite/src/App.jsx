@@ -47,7 +47,8 @@ function handleDeleteGame(id) {
 }
   return (
      <>
-      <Header />
+      <Header 
+      totalGames = {games.length} />
       <AddGameForm 
       games = {games} 
       setGames = {setGames}

@@ -1,10 +1,12 @@
-function Header ()
+
+function Header ({totalGames})
 {
+
     return(
-        
+    
         <header>
             <h1>🎮 Game Library</h1>
-            <p>Total Games: <strong>3</strong></p>
+            <p>Total Games: <strong> {totalGames} </strong></p>
         </header>
     )
 }
