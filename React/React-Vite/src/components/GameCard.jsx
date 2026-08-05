@@ -1,4 +1,5 @@
 function GameCard(props) {
+  console.log(props);
   return (
     <div className="game-card">
       <h3>{props.title}</h3>
@@ -14,7 +15,10 @@ function GameCard(props) {
           Mark Completed
         </button>
 
-        <button className="delete-btn">
+        <button 
+          className="delete-btn"
+          onClick={() => props.onDelete(props.id)}
+        >
           Delete
         </button>
       </div>

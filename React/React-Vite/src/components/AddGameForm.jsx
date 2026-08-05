@@ -13,6 +13,7 @@ function AddGameForm({ games, setGames })
     function handleAddGames()
     {
         const newGame ={
+            id: games.length+1,
             title,
             genre,
             status
