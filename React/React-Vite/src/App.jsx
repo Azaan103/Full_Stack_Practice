@@ -26,6 +26,21 @@ function App() {
   }
 ]
 );
+function completeGame(id)
+{
+  const completedGame = games.map((game) => {
+    if ( game.id == id ) {
+       return {
+       ...game,
+    status: "Completed"
+}
+    }
+
+    return game;
+})
+  setGames(completedGame)
+}
+
 function handleDeleteGame(id) {
  const updatedgamelist = games.filter((game)=> game.id != id)
  setGames(updatedgamelist)
@@ -40,7 +55,8 @@ function handleDeleteGame(id) {
 
       <GameList   
       games = {games}
-      onDelete = {handleDeleteGame} />
+      onDelete = {handleDeleteGame} 
+      onComplete = {completeGame}/>
     </>
   )
 }

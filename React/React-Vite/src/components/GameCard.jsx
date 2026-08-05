@@ -11,7 +11,9 @@ function GameCard(props) {
       </span>
 
       <div className="buttons">
-        <button className="complete-btn">
+        <button
+        className="complete-btn"
+        onClick = {() => props.onComplete(props.id)}>
           Mark Completed
         </button>
 

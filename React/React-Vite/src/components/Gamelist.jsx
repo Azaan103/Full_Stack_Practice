@@ -1,7 +1,7 @@
 import GameCard from "./GameCard";
 import { useState } from "react";
 
-function Gamelist({games, onDelete}) {
+function Gamelist({games, onDelete, onComplete}) {
   return (
     <section className="games">
 
@@ -10,7 +10,9 @@ function Gamelist({games, onDelete}) {
                <GameCard
                key =  { game.id } 
                { ...game}
-               onDelete={onDelete} />
+               onDelete={onDelete} 
+               onComplete={onComplete}
+               />
             );
         })}
 
