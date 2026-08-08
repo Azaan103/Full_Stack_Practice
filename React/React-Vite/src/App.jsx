@@ -5,7 +5,14 @@ import { useEffect, useState } from "react";
 
 function App() {
 
-  const [games, setGames] = useState([
+  const [games, setGames] = useState(()=>{
+     // Load games when app starts
+      const savedGames = localStorage.getItem("games");
+
+    if (savedGames) {
+      return (JSON.parse(savedGames));
+    }
+    [
     {
       id: 1,
       title: "Cyberpunk 2075",
@@ -24,7 +31,16 @@ function App() {
       genre: "Sandbox",
       status: "Wishlist"
     }
-  ]);
+    
+  ]
+  })
+    // Save games whenever games changes
+  useEffect(() => {
+    localStorage.setItem("games", JSON.stringify(games));
+  }, [games]);
+
+
+ 
 
   function completeGame(id) {
     const completedGame = games.map((game) => {
@@ -46,19 +62,7 @@ function App() {
     setGames(updatedGameList);
   }
 
-  // Save games whenever games changes
-  useEffect(() => {
-    localStorage.setItem("games", JSON.stringify(games));
-  }, [games]);
 
-  // Load games when app starts
-  useEffect(() => {
-    const savedGames = localStorage.getItem("games");
-
-    if (savedGames) {
-      setGames(JSON.parse(savedGames));
-    }
-  }, []);
 
   return (
     <>
