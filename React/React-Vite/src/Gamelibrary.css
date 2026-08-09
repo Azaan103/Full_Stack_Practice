@@ -166,3 +166,27 @@ button{
 .hidden{
     display:none;
 }
+.search-container {
+    margin-bottom: 30px;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid #333;
+    border-radius: 10px;
+    background: #1e1e1e;
+    color: white;
+    font-size: 16px;
+    transition: .3s;
+}
+
+.search-bar::placeholder {
+    color: #888;
+}
+
+.search-bar:focus {
+    outline: none;
+    border-color: #4caf50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, .15);
+}
