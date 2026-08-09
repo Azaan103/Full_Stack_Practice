@@ -1,7 +1,7 @@
 import Header from "./components/Header";
 import AddGameForm from "./components/AddGameForm";
 import GameList from "./components/Gamelist";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import SearchBar from "./components/SearchBar";
 import GameFilter from "./components/gameFilter";
 
@@ -14,7 +14,7 @@ function App() {
     if (savedGames) {
       return (JSON.parse(savedGames));
     }
-    [
+    return [
     {
       id: 1,
       title: "Cyberpunk 2075",
@@ -64,7 +64,12 @@ function App() {
     setGames(updatedGameList);
   }
   
-   const filteredGame = games.filter((game)=> game.title.toLowerCase().includes(search.toLowerCase()) && (game.status === statusFilter || statusFilter === "All"));
+   const filteredGame = useMemo(() => {
+    return games.filter((game) => 
+      game.title.toLowerCase().includes(search.toLowerCase()) && 
+      (game.status === statusFilter || statusFilter === "All")
+    );
+  }, [games, search, statusFilter]);
 
   return (
     <>
