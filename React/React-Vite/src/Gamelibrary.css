@@ -190,3 +190,37 @@ button{
     border-color: #4caf50;
     box-shadow: 0 0 0 2px rgba(76, 175, 80, .15);
 }
+
+.game-filter {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.game-filter label {
+    color: #bbb;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.game-status-select {
+    padding: 10px 14px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background: #1e1e1e;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.game-status-select:hover {
+    border-color: #555;
+}
+
+.game-status-select:focus {
+    outline: none;
+    border-color: #4caf50;
+}
+

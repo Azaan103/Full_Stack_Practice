@@ -3,6 +3,7 @@ import AddGameForm from "./components/AddGameForm";
 import GameList from "./components/Gamelist";
 import { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
+import GameFilter from "./components/gameFilter";
 
 function App() {
 
@@ -41,8 +42,7 @@ function App() {
   }, [games]);
 
   const [search, setSearch] = useState("");
-  console.log(search)
- 
+  const [statusFilter, setStatusFilter] = useState("All");
 
   function completeGame(id) {
     const completedGame = games.map((game) => {
@@ -64,7 +64,7 @@ function App() {
     setGames(updatedGameList);
   }
   
-   const filteredGame = games.filter((game)=> game.title.toLowerCase().includes(search.toLowerCase()) )
+   const filteredGame = games.filter((game)=> game.title.toLowerCase().includes(search.toLowerCase()) && (game.status === statusFilter || statusFilter === "All"));
 
   return (
     <>
@@ -77,6 +77,12 @@ function App() {
       <SearchBar
       search={search}
       setSearch={setSearch}/>
+
+      <GameFilter
+        statusFilter={statusFilter}
+        setStatusFilter={setStatusFilter}
+      />
+
       <GameList
         games={filteredGame}
         onDelete={handleDeleteGame}
