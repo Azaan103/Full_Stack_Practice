@@ -4,17 +4,11 @@ import GameList from "./components/Gamelist";
 import { useEffect, useMemo, useState } from "react";
 import SearchBar from "./components/SearchBar";
 import GameFilter from "./components/gameFilter";
+import useLocalStorage from "./hooks/useLocalStorage"
 
 function App() {
 
-  const [games, setGames] = useState(()=>{
-     // Load games when app starts
-    const savedGames = localStorage.getItem("games");
-
-    if (savedGames) {
-      return (JSON.parse(savedGames));
-    }
-    return [
+  const [games, setGames] = useLocalStorage("games", [
     {
       id: 1,
       title: "Cyberpunk 2075",
@@ -35,11 +29,7 @@ function App() {
     }
     
   ]
-  })
-    // Save games whenever games changes
-  useEffect(() => {
-    localStorage.setItem("games", JSON.stringify(games));
-  }, [games]);
+  )
 
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
