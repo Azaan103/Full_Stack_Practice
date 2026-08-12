@@ -1,8 +1,11 @@
 import GameCard from "./GameCard";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import GameContext from "../context/GameContext";
 
-function Gamelist({games, onDelete, onComplete}) {
+function Gamelist({games}) {
+    const {onDelete,onComplete} = useContext(GameContext)
   return (
+    
     <section className="games">
 
         {games.map((game) => {

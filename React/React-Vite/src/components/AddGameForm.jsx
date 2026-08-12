@@ -1,6 +1,8 @@
-import { useState } from "react";
-function AddGameForm({ games, setGames })
+import { useContext, useState } from "react";
+import GameContext from "../context/GameContext";
+function AddGameForm()
 {       
+    const { games, setGames } = useContext(GameContext);
 
     const [title, setTitle] = useState("");   
     const [genre,setGenre] = useState("");

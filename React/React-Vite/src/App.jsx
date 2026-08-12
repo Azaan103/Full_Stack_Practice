@@ -5,6 +5,8 @@ import { useEffect, useMemo, useState } from "react";
 import SearchBar from "./components/SearchBar";
 import GameFilter from "./components/gameFilter";
 import useLocalStorage from "./hooks/useLocalStorage"
+import GameContext from "./context/GameContext";
+
 // latest version
 function App() {
 
@@ -63,12 +65,17 @@ function App() {
 
   return (
     <>
+    <GameContext.Provider
+    value = {{
+      games,
+      setGames,
+      onDelete: handleDeleteGame,
+      onComplete: completeGame
+    }}
+    >
       <Header totalGames={games.length} />
     
-      <AddGameForm
-        games={games}
-        setGames={setGames}
-      />
+      <AddGameForm />
       <SearchBar
       search={search}
       setSearch={setSearch}/>
@@ -80,9 +87,8 @@ function App() {
 
       <GameList
         games={filteredGame}
-        onDelete={handleDeleteGame}
-        onComplete={completeGame}
       />
+      </GameContext.Provider>
     </>
   );
 }
