@@ -15,7 +15,7 @@ function AddGameForm()
     function handleAddGames()
     {
         const newGame ={
-            id: games.length+1,
+            id: Date.now(),
             title,
             genre,
             status
