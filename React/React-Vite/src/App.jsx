@@ -1,96 +1,29 @@
-import Header from "./components/Header";
-import AddGameForm from "./components/AddGameForm";
-import GameList from "./components/Gamelist";
-import { useEffect, useMemo, useState } from "react";
-import SearchBar from "./components/SearchBar";
-import GameFilter from "./components/gameFilter";
-import useLocalStorage from "./hooks/useLocalStorage"
-import GameContext from "./context/GameContext";
+import {BrowserRouter, Link, Routes,Route} from "react-router-dom"
+import Home from "./pages/Home"
+import About from "./pages/About"
+import Games from "./pages/Games"
 
 // latest version
 function App() {
 
-  const [games, setGames] = useLocalStorage("games", [
-    {
-      id: 1,
-      title: "Cyberpunk 2075",
-      genre: "RPG",
-      status: "Playing"
-    },
-    {
-      id: 2,
-      title: "GTA V",
-      genre: "Action",
-      status: "Completed"
-    },
-    {
-      id: 3,
-      title: "Minecraft",
-      genre: "Sandbox",
-      status: "Wishlist"
-    }
-    
-  ]
-  )
-
-  const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState("All");
-
-  function completeGame(id) {
-    const completedGame = games.map((game) => {
-      if (game.id == id) {
-        return {
-          ...game,
-          status: "Completed"
-        };
-      }
-
-      return game;
-    });
-
-    setGames(completedGame);
-  }
-
-  function handleDeleteGame(id) {
-    const updatedGameList = games.filter((game) => game.id != id);
-    setGames(updatedGameList);
-  }
-  
-   const filteredGame = useMemo(() => {
-    return games.filter((game) => 
-      game.title.toLowerCase().includes(search.toLowerCase()) && 
-      (game.status === statusFilter || statusFilter === "All")
-    );
-  }, [games, search, statusFilter]);
-
   return (
-    <>
-    <GameContext.Provider
-    value = {{
-      games,
-      setGames,
-      onDelete: handleDeleteGame,
-      onComplete: completeGame
-    }}
-    >
-      <Header totalGames={games.length} />
-    
-      <AddGameForm />
-      <SearchBar
-      search={search}
-      setSearch={setSearch}/>
+    <BrowserRouter>
+    <nav>
+        <Link to="/">Home</Link> 
+        <Link to="/about">About</Link> 
+        <Link to="/games">Games</Link>
+    </nav>
+   
+    <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/games" element={<Games />} />
+      </Routes>
 
-      <GameFilter
-        statusFilter={statusFilter}
-        setStatusFilter={setStatusFilter}
-      />
+       </BrowserRouter>
 
-      <GameList
-        games={filteredGame}
-      />
-      </GameContext.Provider>
-    </>
-  );
+  )
+   
 }
 
-export default App;
+export default App
