@@ -1,11 +1,12 @@
 import Header from "../components/Header";
 import AddGameForm from "../components/AddGameForm";
 import GameList from "../components/Gamelist";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import GameFilter from "../components/gameFilter";
 import useLocalStorage from "../hooks/useLocalStorage";
 import GameContext from "../context/GameContext";
+import { getGames } from "../services/gameApi";
 
 function Games() {
 
@@ -32,6 +33,14 @@ function Games() {
 
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
+
+  useEffect(()=>{
+    async function loadgames() {
+      const data = await (getGames)
+      console.log(data)
+    }
+    loadgames()
+  },[])
 
   function completeGame(id) {
     const completedGame = games.map((game) => {
