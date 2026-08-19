@@ -3,10 +3,21 @@ import { useContext, useState } from "react";
 import GameContext from "../context/GameContext";
 
 function Gamelist({games}) {
-    const {onDelete,onComplete} = useContext(GameContext)
+    const {onDelete,onComplete,loading,error} = useContext(GameContext)
+      if(loading){
+                    return(
+                        <p>Laoding Games....</p>
+                    )
+                }
+    if(error){
+        return(
+            <p>Error.{error}</p>
+        )
+    }
   return (
-    
+     
     <section className="games">
+
 
         {games.map((game) => {
             return (

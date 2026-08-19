@@ -11,28 +11,35 @@ import { getGames } from "../services/gameApi";
 function Games() {
 
   const [games, setGames] = useState([]);
+  const [library, setlibrary] = useState([]);
+
 
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
+  const [loading,setLoading] = useState(true)
+  const [error,setError] = useState(null)
 
   useEffect(() => {
     async function loadgames() {
       const data = await getGames();
       
-
-      const formattedGames = data.map((game) => ({
+try{
+const formattedGames = data.map((game) => ({
         id: game.id,
         title: game.title,
         genre: game.genre,
-        status: "Wishlist",
         image: game.thumbnail
       }));
 
       setGames(formattedGames);
-      console.log(data[0])
       return data;
-      
-
+}
+      catch(error){
+        setError(true)
+      }
+      finally{
+        setLoading(false);
+      }
     }
     loadgames()
   }, [])
@@ -70,7 +77,11 @@ function Games() {
         games,
         setGames,
         onDelete: handleDeleteGame,
-        onComplete: completeGame
+        onComplete: completeGame,
+        loading,
+        setLoading,
+        error,
+        setError
       }}
     >
       <Header totalGames={games.length} />
