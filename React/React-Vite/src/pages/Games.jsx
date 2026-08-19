@@ -10,37 +10,32 @@ import { getGames } from "../services/gameApi";
 
 function Games() {
 
-  const [games, setGames] = useLocalStorage("games", [
-    {
-      id: 1,
-      title: "Cyberpunk 2075",
-      genre: "RPG",
-      status: "Playing"
-    },
-    {
-      id: 2,
-      title: "GTA V",
-      genre: "Action",
-      status: "Completed"
-    },
-    {
-      id: 3,
-      title: "Minecraft",
-      genre: "Sandbox",
-      status: "Wishlist"
-    }
-  ]);
+  const [games, setGames] = useState([]);
 
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
 
-  useEffect(()=>{
+  useEffect(() => {
     async function loadgames() {
-      const data = await (getGames)
-      console.log(data)
+      const data = await getGames();
+      
+
+      const formattedGames = data.map((game) => ({
+        id: game.id,
+        title: game.title,
+        genre: game.genre,
+        status: "Wishlist",
+        image: game.thumbnail
+      }));
+
+      setGames(formattedGames);
+      console.log(data[0])
+      return data;
+      
+
     }
     loadgames()
-  },[])
+  }, [])
 
   function completeGame(id) {
     const completedGame = games.map((game) => {
