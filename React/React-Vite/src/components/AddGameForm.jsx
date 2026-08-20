@@ -3,6 +3,7 @@ import GameContext from "../context/GameContext";
 function AddGameForm()
 {       
     const { games, setGames } = useContext(GameContext);
+    const {library,setLibrary} = useContext(GameContext);
 
     const [title, setTitle] = useState("");   
     const [genre,setGenre] = useState("");
@@ -15,13 +16,13 @@ function AddGameForm()
     function handleAddGames()
     {
         const newGame ={
-            id: Date.now(),
+            id: game.id,
             title,
             genre,
             status
         }
         console.log(newGame)
-        setGames([...games,newGame])
+        setLibrary([...library,newGame])
     }
     return(
         <section className="form-card">

@@ -1,29 +1,30 @@
 function GameCard(props) {
-  console.log(props);
+
   return (
     <div className="game-card">
+
+      <img
+        src={props.image}
+        alt={props.title}
+      />
+
       <h3>{props.title}</h3>
 
-      <p><strong>Genre:</strong> {props.genre}</p>
-
-      <span className="status playing">
-        {props.status}
-      </span>
+      <p>
+        <strong>Genre:</strong> {props.genre}
+      </p>
 
       <div className="buttons">
+
         <button
-        className="complete-btn"
-        onClick = {() => props.onComplete(props.id)}>
-          Mark Completed
+          className="add-btn"
+          onClick={() => props.onAddToLibrary(props)}
+        >
+          Add to Library
         </button>
 
-        <button 
-          className="delete-btn"
-          onClick={() => props.onDelete(props.id)}
-        >
-          Delete
-        </button>
       </div>
+
     </div>
   );
 }
