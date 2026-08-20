@@ -4,7 +4,7 @@ import GameList from "../components/Gamelist";
 import { useEffect, useMemo, useState } from "react";
 
 import SearchBar from "../components/SearchBar";
-import GameFilter from "../components/gameFilter";
+import GameFilter from "../components/GameFilter";
 
 import { getGames } from "../services/gameApi";
 
@@ -69,15 +69,17 @@ function Games() {
     <>
       <Header totalGames={games.length} />
 
-      <SearchBar
-        search={search}
-        setSearch={setSearch}
-      />
+      <div className="controls-row">
+        <SearchBar
+          search={search}
+          setSearch={setSearch}
+        />
 
-      <GameFilter
-        statusFilter={statusFilter}
-        setStatusFilter={setStatusFilter}
-      />
+        <GameFilter
+          statusFilter={statusFilter}
+          setStatusFilter={setStatusFilter}
+        />
+      </div>
 
       <GameList
         games={filteredGame}

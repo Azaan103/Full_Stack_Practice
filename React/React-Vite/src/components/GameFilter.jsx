@@ -1,9 +1,8 @@
-
 function GameFilter({ statusFilter, setStatusFilter }) {
   return (
     <div className="game-filter">
       <label htmlFor="game-status-filter">
-        Filter by status:
+        Status
       </label>
 
       <select

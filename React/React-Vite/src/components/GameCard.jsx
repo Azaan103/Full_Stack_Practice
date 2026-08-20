@@ -1,28 +1,36 @@
+import { useContext } from "react";
+import GameContext from "../context/GameContext";
+
 function GameCard(props) {
+
+  const { library } = useContext(GameContext);
+  const isInLibrary = library.some((game) => game.id === props.id);
 
   return (
     <div className="game-card">
 
-      <img
-        src={props.image}
-        alt={props.title}
-      />
+      <div className="game-card-media">
+        <img
+          src={props.image}
+          alt={props.title}
+          loading="lazy"
+        />
+      </div>
 
-      <h3>{props.title}</h3>
+      <div className="game-card-body">
+        <h3>{props.title}</h3>
 
-      <p>
-        <strong>Genre:</strong> {props.genre}
-      </p>
+        <span className="game-card-genre">{props.genre}</span>
 
-      <div className="buttons">
-
-        <button
-          className="add-btn"
-          onClick={() => props.onAddToLibrary(props)}
-        >
-          Add to Library
-        </button>
-
+        <div className="buttons">
+          <button
+            className={isInLibrary ? "add-btn added" : "add-btn"}
+            onClick={() => props.onAddToLibrary(props)}
+            disabled={isInLibrary}
+          >
+            {isInLibrary ? "✓ Added to Library" : "Add to Library"}
+          </button>
+        </div>
       </div>
 
     </div>

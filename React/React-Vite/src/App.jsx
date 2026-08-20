@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
+import { BrowserRouter, NavLink, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -13,6 +13,9 @@ function App() {
 
   // Stores only the games the user has added to their library.
   const [library, setLibrary] = useState([]);
+
+  // Controls the mobile nav menu (visual only — no routing/logic impact).
+  const [navOpen, setNavOpen] = useState(false);
 
 
   // Adds a game to the user's library.
@@ -71,6 +74,9 @@ function App() {
     setLibrary(updatedLibrary);
   }
 
+  function navLinkClass({ isActive }) {
+    return isActive ? "nav-link active" : "nav-link";
+  }
 
   return (
 
@@ -89,30 +95,61 @@ function App() {
 
       <BrowserRouter>
 
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/games">Games</Link>
-          <Link to="/library">My Library</Link>
+        <nav className="site-nav">
+          <div className="site-nav-inner">
+
+            <NavLink to="/" className="nav-brand" onClick={() => setNavOpen(false)}>
+              <span className="nav-brand-mark">🎮</span>
+              Game Library
+            </NavLink>
+
+            <button
+              type="button"
+              className="nav-toggle"
+              aria-label="Toggle navigation"
+              onClick={() => setNavOpen((open) => !open)}
+            >
+              {navOpen ? "✕" : "☰"}
+            </button>
+
+            <div className={navOpen ? "nav-links" : "nav-links closed"}>
+              <NavLink end to="/" className={navLinkClass} onClick={() => setNavOpen(false)}>
+                Home
+              </NavLink>
+              <NavLink to="/games" className={navLinkClass} onClick={() => setNavOpen(false)}>
+                Games
+              </NavLink>
+              <NavLink to="/library" className={navLinkClass} onClick={() => setNavOpen(false)}>
+                My Library
+              </NavLink>
+              <NavLink to="/about" className={navLinkClass} onClick={() => setNavOpen(false)}>
+                About
+              </NavLink>
+            </div>
+
+          </div>
         </nav>
 
+        <div className="container">
 
-        <Routes>
+          <Routes>
 
-          <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home />} />
 
-          <Route path="/about" element={<About />} />
+            <Route path="/about" element={<About />} />
 
-          <Route path="/games" element={<Games />} />
+            <Route path="/games" element={<Games />} />
 
-          <Route path="/library" element={<MyLibrary />} />
+            <Route path="/library" element={<MyLibrary />} />
 
-          <Route
-            path="/gamedetail/:id"
-            element={<GameDetails />}
-          />
+            <Route
+              path="/gamedetail/:id"
+              element={<GameDetails />}
+            />
 
-        </Routes>
+          </Routes>
+
+        </div>
 
       </BrowserRouter>
 
