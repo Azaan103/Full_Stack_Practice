@@ -793,6 +793,7 @@ span.status.wishlist:has(+ .buttons) { /* fallback, harmless if unsupported */
   font-size: 26px;
   margin-bottom: var(--space-3);
 }
+
 .about-card p {
   color: var(--text-secondary);
   font-size: 15px;
